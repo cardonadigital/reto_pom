@@ -1,7 +1,7 @@
 package co.com.sofka.stepdefinition.login;
 
 import co.com.sofka.pages.home.HomePage;
-import co.com.sofka.pages.singin.SignInPage;
+import co.com.sofka.pages.signin.SignInPage;
 import co.com.sofka.stepdefinition.setup.BaseTestPage;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Dado;

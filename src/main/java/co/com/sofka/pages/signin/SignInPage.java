@@ -1,4 +1,4 @@
-package co.com.sofka.pages.singin;
+package co.com.sofka.pages.signin;
 
 import co.com.sofka.common.BasePageActions;
 import org.openqa.selenium.By;

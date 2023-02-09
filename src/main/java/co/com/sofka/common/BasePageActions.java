@@ -7,8 +7,10 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.python.antlr.ast.Return;
 
 import java.time.Duration;
@@ -93,6 +95,15 @@ public class BasePageActions {
         }
     }
 
+    //Click On Element
+    protected void clickOn(WebElement element) {
+        try {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        } catch (Exception e) {
+            LOGGER.warn(e.getMessage(), e);
+        }
+    }
+
     //Is an Element Displayed
     protected boolean isDisplayed(WebElement element) {
         try {
@@ -127,12 +138,19 @@ public class BasePageActions {
         });
     }
 
-    protected WebElement element(By element){
-        return driver.findElement(element);
+    //waituntil
+    public void waitUntilClickable(By locator){
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        element.click();
     }
 
-    protected List<WebElement> elements(By elements){
-        return driver.findElements(elements);
+    protected WebElement element(By locator){
+        return driver.findElement(locator);
+    }
+
+    protected List<WebElement> elements(By locator){
+        return driver.findElements(locator);
     }
 
     protected String getAttribute(WebElement element, String attribute){
