@@ -12,7 +12,6 @@ import org.apache.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 
 public class VerificarFiltroStepDefinition extends BaseTestPage {
-    private static final Logger LOGGER = Logger.getLogger(VerificarFiltroStepDefinition.class);
 
     private HomePage homePage;
     private GearPage gearPage;
@@ -61,9 +60,5 @@ public class VerificarFiltroStepDefinition extends BaseTestPage {
         }
     }
 
-    private void handleException(Exception e){
-        LOGGER.error("Error en la ejecucion del test: " + e.getMessage());
-        Assertions.fail("Error en la ejecucion del test: " + e.getMessage());
-        quiteDriver();
-    }
+
 }

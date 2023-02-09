@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FitnessPage extends BasePageActions {
-    By activity = By.xpath("//div[contains(text(), 'Activity')]");
-    By gymActivity = By.xpath("//a[contains(text(), 'Gym')]");
+    By activityLocator = By.xpath("//div[contains(text(), 'Activity')]");
+    By gymActivityLocator = By.xpath("//a[contains(text(), 'Gym')]");
 
-    By gender = By.xpath("//div[contains(text(), 'Gender')]");
-    By unisexGender = By.xpath("//a[contains(text(), 'Unisex')]");
+    By genderLocator = By.xpath("//div[contains(text(), 'Gender')]");
+    By unisexGenderLocator = By.xpath("//a[contains(text(), 'Unisex')]");
 
 
 
@@ -24,15 +24,15 @@ public class FitnessPage extends BasePageActions {
 
 
     public void selectActivityGym(){
-        scrollOn(element(activity));
-        clickOnElement(element(activity));
-        clickOnElement(element(gymActivity));
+        scrollOn(element(activityLocator));
+        clickOnElement(element(activityLocator));
+        clickOnElement(element(gymActivityLocator));
     }
 
     public void selectGenderUnixes(){
-        scrollOn(element(gender));
-        clickOnElement(element(gender));
-        clickOnElement(element(unisexGender));
+        scrollOn(element(genderLocator));
+        clickOnElement(element(genderLocator));
+        clickOnElement(element(unisexGenderLocator));
     }
 
     public Integer getAmountProducts() throws InterruptedException {
