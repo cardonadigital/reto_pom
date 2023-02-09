@@ -9,10 +9,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.python.antlr.ast.Return;
 
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 public class BasePageActions {
     private static final Logger LOGGER = Logger.getLogger(BasePageActions.class);
@@ -109,6 +111,20 @@ public class BasePageActions {
             LOGGER.warn(e.getMessage(), e);
             return "";
         }
+    }
+
+    //Fluent wait element
+    protected WebElement waitElement(By locator){
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofMillis(500))
+                .ignoring(NoSuchElementException.class);
+
+        return  wait.until(new Function<WebDriver, WebElement>() {
+            public WebElement apply(WebDriver driver) {
+                return driver.findElement(locator);
+            }
+        });
     }
 
     protected WebElement element(By element){

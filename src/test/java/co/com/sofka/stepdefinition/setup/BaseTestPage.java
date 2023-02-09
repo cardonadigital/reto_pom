@@ -1,6 +1,9 @@
 package co.com.sofka.stepdefinition.setup;
 
+import co.com.sofka.stepdefinition.fitness.VerificarFiltroStepDefinition;
+import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -8,6 +11,7 @@ import static co.com.sofka.util.Log4jValues.LOG4J_PROPERTIES_FILE_PATH;
 import static com.google.common.base.StandardSystemProperty.USER_DIR;
 
 public class BaseTestPage {
+    private static final Logger LOGGER = Logger.getLogger(BaseTestPage.class);
 
     private static final String WEBDRIVER_CHROME_DRIVER = "webdriver.chrome.driver";
     private static final String WEBDRIVER_CHROME_DRIVER_PATH = "src/test/resources/drivers/chromedriver.exe";
@@ -32,5 +36,11 @@ public class BaseTestPage {
 
     protected void quiteDriver() {
         driver.quit();
+    }
+
+    protected void handleException(Exception e){
+        LOGGER.error("Error en la ejecucion del test: " + e.getMessage());
+        Assertions.fail("Error en la ejecucion del test: " + e.getMessage());
+        quiteDriver();
     }
 }
