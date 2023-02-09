@@ -6,5 +6,6 @@ Característica:  Comprar productos
     Y agregue 2 productos al carrito de compras
     Y valla al modulo de hombres
     Y agregue otros 2 productos al carrito de compras
-    Cuando realize la compra de los productos
-    Entonces podrá ver el siguiente mensaje  : "Thank you for your purchase!".
+    Cuando realize el checkout rellenando los campos obligatorios
+    Y confirme la compra
+    Entonces podrá ver el siguiente mensaje  : "Thank you for your purchase".
