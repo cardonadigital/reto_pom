@@ -156,4 +156,9 @@ public class BasePageActions {
     protected String getAttribute(WebElement element, String attribute){
         return element.getAttribute(attribute);
     }
+
+    protected void clearField(WebElement element){
+        element.clear();
+    }
 }
+

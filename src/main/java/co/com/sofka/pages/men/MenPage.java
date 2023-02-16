@@ -2,10 +2,12 @@ package co.com.sofka.pages.men;
 
 import co.com.sofka.common.BasePageActions;
 import co.com.sofka.pages.shoppingcart.ShoppingCartPage;
+import co.com.sofka.util.Tools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class MenPage extends BasePageActions {
+    Tools tools = new Tools(driver, 10);
     By productsLocator = By.className("product-item");
     By shoppingCartLocator = By.xpath("/html/body/div[2]/header/div[2]/div[1]/a");
     By proceedCheckoutLocator = By.id("top-cart-btn-checkout");
@@ -14,17 +16,8 @@ public class MenPage extends BasePageActions {
         super(driver, seconds);
     }
 
-    public void getProducts(Integer productsAmount) {
-        for (int i = 0; i < productsAmount; i++) {
-            var element = driver.findElements(productsLocator).get(i);
-            scrollOn(element);
-            clickOnElement(element);
-            clickOnElement(element(By.xpath("//div[contains(@id, 'option-label-size-143-item-166')]")));
-            clickOnElement(element(By.xpath("//div[contains(@id, 'option-label-color')]")));
-            clickOnElement(element(By.xpath("//span[contains(text(), 'Add to Cart')]")));
-            waitElement(By.xpath("//div[contains(text(), 'You added')]"));
-            driver.navigate().back();
-        }
+    public void addProductsToCart(Integer productsAmount) {
+        tools.addProductsToCart(productsLocator, productsAmount);
     }
 
     public ShoppingCartPage openShoppingCartPage() throws InterruptedException {
