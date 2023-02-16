@@ -8,9 +8,9 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        publish = false,
+        publish = true,
         features = {"src/test/resources/features/fitness/verificarFiltro.feature"},
-        glue = "co.com.sofka.stepdefinition.fitness",
+        glue = "co.com.sofka.definitions.fitness",
         plugin = {"pretty", "html:target/cucumber-reports"}
 )
 public class VerificarFiltroTestRunner {

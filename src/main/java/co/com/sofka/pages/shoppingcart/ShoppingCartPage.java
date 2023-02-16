@@ -1,6 +1,7 @@
 package co.com.sofka.pages.shoppingcart;
 
 import co.com.sofka.common.BasePageActions;
+import co.com.sofka.util.Tools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -8,6 +9,8 @@ import org.openqa.selenium.support.ui.Select;
 import static co.com.sofka.models.ShippingInfo.shippingInfo;
 
 public class ShoppingCartPage extends BasePageActions {
+    Tools tools = new Tools(driver, 10);
+    By productsLocator = By.xpath("//tbody[contains(@class, 'cart item')]");
     By emailLocator = By.xpath("/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form[1]/fieldset/div/div/input");
     By firstNameLocator = By.xpath("/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form[2]/div/div[1]/div/input");
     By lastNameLocator = By.xpath("/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form[2]/div/div[2]/div/input");
@@ -20,6 +23,8 @@ public class ShoppingCartPage extends BasePageActions {
     By nextButtonLocator = By.xpath("//span[contains(text(), 'Next')]");
     By placeOrderLocator = By.xpath("//span[contains(text(), 'Place Order')]");
     By successfulOrderLocator = By.xpath("//span[contains(text(), 'Thank')]");
+    By titleLocator = By.xpath("//span[contains(text(), 'Shopping')]");
+    By deleProductLocator = By.className("action-delete");
 
     public ShoppingCartPage(WebDriver driver, int seconds) {
         super(driver, seconds);
@@ -50,4 +55,21 @@ public class ShoppingCartPage extends BasePageActions {
         waitElement(successfulOrderLocator);
         return getTextFromElement(element(successfulOrderLocator));
     }
+
+    public Integer getAmountOfProducts(){
+        return tools.getAmountOfProducts(productsLocator);
+    }
+
+    public String getPageTitle(){
+        return getTextFromElement(element(titleLocator));
+    }
+
+    public void deleteProducts(Integer productsAmount){
+        for (int i = 0; i < productsAmount; i++) {
+            var element = driver.findElements(deleProductLocator).get(i);
+            scrollOn(element);
+            clickOnElement(element);
+        }
+    }
+
 }
